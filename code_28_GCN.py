@@ -179,7 +179,7 @@ def accuracy(output, y):
     return (output.argmax(1) == y).type(torch.float32).mean().item()
 
 
-def step():
+def train():
     model.train()
     optimizer.zero_grad()
     output = model(features, adj)
@@ -212,7 +212,7 @@ print_steps = 50
 train_loss, train_acc = [], []
 val_loss, val_acc = [], []
 for i in tqdm(range(epochs)):
-    tl, ta = step()
+    tl, ta = train()
     train_loss += [tl]
     train_acc += [ta]
     if (i + 1) % print_steps == 0 or i == 0:
